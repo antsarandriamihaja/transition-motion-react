@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
+import Transition from './components/transition';
 
-class App extends Component {
+class App extends React.Component {
+constructor() {
+  super();
+  this.state = {
+    open: false
+  }
+}
+  handleOpen = () => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
   render() {
+    const {open} = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <button onClick={this.handleOpen}>Open</button>
+          
+          <Transition>
+            {open ? <div>hi from transition</div> : null}
+          </Transition>
       </div>
     );
   }
